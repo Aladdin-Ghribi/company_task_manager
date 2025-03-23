@@ -62,13 +62,34 @@ class MyHomePage extends StatelessWidget {
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                debugPrint("Username: ${_usernameController.text}");
-                debugPrint("Password: ${_passwordController.text}");
+                String username = _usernameController.text;
+                String password = _passwordController.text;
+                if (username.isNotEmpty && password.isNotEmpty){
+                  debugPrint("Loggin in with Username: $username");
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskListScreen()));
+                }else{
+                    debugPrint("Please enter both username and password");
+                }
               },
               child: Text('Login'),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TaskListScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Task List'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: Center(
+        child: Text('Tasks go here!'),
       ),
     );
   }
