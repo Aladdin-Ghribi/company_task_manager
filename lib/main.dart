@@ -80,17 +80,36 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class TaskListScreen extends StatelessWidget {
+
+
+class TaskListScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Task List'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
-      body: Center(
-        child: Text('Tasks go here!'),
-      ),
-    );
-  }
+  _TaskListScreenState createState() => _TaskListScreenState();
+}
+
+class _TaskListScreenState extends State<TaskListScreen> {
+  // Hardcoded list of tasks for now
+  final List<String> _tasks = [
+    "Finish report",
+    "Call client",
+    "Team meeting",
+  ];
+
+  @override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('Task List'),
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+    ),
+    body: ListView.builder(
+      itemCount: _tasks.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(_tasks[index]),
+        );
+      },
+    ),
+  );
+}
 }
