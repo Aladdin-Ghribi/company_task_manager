@@ -103,10 +103,13 @@ Widget build(BuildContext context) {
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
     ),
     body: ListView.builder(
+
       itemCount: _tasks.length,
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(_tasks[index]),
+          subtitle: Text("important"),
+          textColor:Colors.purple[900],
         );
       },
     ),
