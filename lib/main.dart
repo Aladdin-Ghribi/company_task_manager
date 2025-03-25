@@ -89,13 +89,13 @@ class TaskListScreen extends StatefulWidget {
 
 class _TaskListScreenState extends State<TaskListScreen> {
   // Hardcoded list of tasks for now
-  final List<String> _tasks = [
-    "Finish report",
-    "Call client",
-    "Team meeting",
+  final List<Map<String, dynamic>> _tasks = [
+    {"title": "Finish report", "completed": false},
+    {"title": "Call client", "completed": false},
+    {"title": "Team meeting", "completed": false},
   ];
 
-  @override
+ @override
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
@@ -103,13 +103,21 @@ Widget build(BuildContext context) {
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
     ),
     body: ListView.builder(
-
       itemCount: _tasks.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text(_tasks[index]),
+          title: Text(_tasks[index]["title"]),
           subtitle: Text("important"),
-          textColor:Colors.purple[900],
+          textColor: Colors.purple[500],
+          trailing: Checkbox(
+            value: _tasks[index]["completed"],
+            onChanged: (value) {
+              setState(() {
+                _tasks[index]["completed"] = value!;
+                debugPrint("${_tasks[index]["title"]} marked as ${value ? 'done' : 'not done'}");
+              });
+            },
+          ),
         );
       },
     ),
