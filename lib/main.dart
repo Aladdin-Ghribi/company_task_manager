@@ -121,6 +121,62 @@ Widget build(BuildContext context) {
         );
       },
     ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: () async {
+        String? newTask = await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AddTaskScreen()),
+        );
+        if (newTask != null) {
+          setState(() {
+            _tasks.add({"title": newTask, "completed": false});
+            debugPrint("Added task: $newTask");
+          });
+        }
+      },
+      child: Icon(Icons.add),
+      tooltip: 'Add Task',
+    ),
   );
 }
+}
+
+class AddTaskScreen extends StatelessWidget {
+  final TextEditingController _taskController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Add Task'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _taskController,
+              decoration: InputDecoration(
+                labelText: 'Task Title',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                String newTask = _taskController.text;
+                if (newTask.isNotEmpty) {
+                  Navigator.pop(context, newTask); // Send task back
+                } else {
+                  debugPrint("Task title can’t be empty!");
+                }
+              },
+              child: Text('Add'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
