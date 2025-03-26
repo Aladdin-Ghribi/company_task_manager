@@ -107,16 +107,28 @@ Widget build(BuildContext context) {
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(_tasks[index]["title"]),
-          subtitle: Text("important"),
           textColor: Colors.purple[500],
-          trailing: Checkbox(
-            value: _tasks[index]["completed"],
-            onChanged: (value) {
-              setState(() {
-                _tasks[index]["completed"] = value!;
-                debugPrint("${_tasks[index]["title"]} marked as ${value ? 'done' : 'not done'}");
-              });
-            },
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Checkbox(
+                value: _tasks[index]["completed"],
+                onChanged: (value) {
+                  setState(() {
+                    _tasks[index]["completed"] = value!;
+                    debugPrint("${_tasks[index]["title"]} marked as ${value ? 'done' : 'not done'}");
+                  });
+                },
+              ),
+              IconButton(onPressed: (){
+                setState(() {
+                  String deletedTask=_tasks[index]["title"];
+                  _tasks.removeAt(index);
+                  debugPrint("Deleted Task: $deletedTask");
+                });
+
+              }, icon: Icon(Icons.delete,color: Colors.red,))
+            ],
           ),
         );
       },
@@ -158,7 +170,8 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               controller: _taskController,
               decoration: InputDecoration(
-                labelText: 'Task Title',
+                labelText: 'Task Title',                fillColor: Colors.blue,
+
                 border: OutlineInputBorder(),
               ),
             ),
