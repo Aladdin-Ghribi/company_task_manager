@@ -41,7 +41,6 @@ Widget build(BuildContext context) {
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(_tasks[index]["title"]),
-          subtitle: Text("important"),
           textColor: Colors.purple[500],
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
