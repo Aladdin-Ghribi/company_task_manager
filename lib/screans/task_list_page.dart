@@ -1,4 +1,5 @@
 import 'package:company_task_manager/screans/add_task_page.dart';
+import 'package:company_task_manager/screans/edit_task_list.dart';
 import 'package:flutter/material.dart';
 
 class TaskListScreen extends StatefulWidget {
@@ -41,6 +42,7 @@ Widget build(BuildContext context) {
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(_tasks[index]["title"]),
+          subtitle: Text("important"),
           textColor: Colors.purple[500],
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
@@ -66,6 +68,22 @@ Widget build(BuildContext context) {
               ),
             ],
           ),
+          onTap: () async {
+            String? updatedTitle = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditTaskScreen(
+                  initialTitle: _tasks[index]["title"],
+                ),
+              ),
+            );
+            if (updatedTitle != null) {
+              setState(() {
+                _tasks[index]["title"] = updatedTitle;
+                debugPrint("Updated task to: $updatedTitle");
+              });
+            }
+          },
         );
       },
     ),
