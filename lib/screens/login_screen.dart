@@ -1,7 +1,7 @@
-import 'package:company_task_manager/screans/task_list_page.dart';
+import 'package:company_task_manager/screens/task_list_screen.dart';
 import 'package:flutter/material.dart';
 
-class LoginScrean extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 

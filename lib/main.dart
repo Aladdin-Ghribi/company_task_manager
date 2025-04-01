@@ -1,6 +1,5 @@
-import 'package:company_task_manager/screans/login_page.dart';
+import 'package:company_task_manager/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show debugPrint;
 
 void main() {
   String appName = "Company Task Manager";
@@ -16,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Company Task Manager',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 10, 93, 227)),
       ),
-      home: LoginScrean(),
+      home: LoginScreen(),
     );
   }
 }

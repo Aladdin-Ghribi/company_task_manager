@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 
-class EditTaskScreen extends StatelessWidget {
-  final String initialTitle;
-  final TextEditingController _taskController;
-
-  EditTaskScreen({required this.initialTitle})
-      : _taskController = TextEditingController(text: initialTitle);
+class AddTaskScreen extends StatelessWidget {
+  final TextEditingController _taskController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Task'),
+        title: Text('Add Task'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Padding(
@@ -21,21 +17,28 @@ class EditTaskScreen extends StatelessWidget {
             TextField(
               controller: _taskController,
               decoration: InputDecoration(
-                labelText: 'Task Title',
+                labelText: 'Task Title',                
+                labelStyle: TextStyle(color: const Color.fromARGB(255, 0, 8, 255)),
+
                 border: OutlineInputBorder(),
               ),
+              style: TextStyle(color: Colors.blueAccent),
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                String updatedTask = _taskController.text;
-                if (updatedTask.isNotEmpty) {
-                  Navigator.pop(context, updatedTask);
+                String newTask = _taskController.text;
+                if (newTask.isNotEmpty) {
+                  Navigator.pop(context, newTask); // Send task back
                 } else {
                   debugPrint("Task title can’t be empty!");
                 }
               },
-              child: Text('Save'),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.blueAccent
+              ),
+              child: Text('Add'),
+              
             ),
           ],
         ),
