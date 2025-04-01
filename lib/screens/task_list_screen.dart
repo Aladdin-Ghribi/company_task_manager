@@ -100,7 +100,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
           return ListTile(
             title: Text(_tasks[index]["title"]),
             subtitle: Text("important"),
-            textColor: Colors.purple[500],
+            textColor: const Color.fromARGB(255, 21, 80, 199),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
